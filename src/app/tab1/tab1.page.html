@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+    <ion-toolbar >
+       <ion-title style="text-align: center;" position="floating">Statistiques</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+
+
+  <div class="container">
+
+    <ion-searchbar placeholder="Chercher par pays" (change)="filterByCountry($event)"></ion-searchbar>
+    <div style="margin: 0 10px 0 10px" *ngIf="showData | async">
+
+      <ion-card>
+
+        
+        <ion-header style="margin: 0 5px 0 5px" >
+          <ion-item color="primary">
+            <ion-icon name="globe-outline" style="margin: 5px 5px 0 5px"></ion-icon>
+            <ion-label text-wrap> Statisques à jour du monde entier</ion-label>
+          </ion-item>
+        </ion-header>
+      
+        <h1 style="margin: 0 20px 0 20px">
+        <ion-list>
+          <ion-item class="stat">{{ list.Global.NewConfirmed }} : nombre de nouveaux cas.</ion-item>
+          <ion-item class="stat">{{ list.Global.TotalConfirmed }} : nombre de cas total.</ion-item>
+          <ion-item class="stat">{{ list.Global.NewDeaths }} : nombre de nouveaux décès.</ion-item>
+          <ion-item class="stat">{{ list.Global.NewRecovered }} : nombre de nouveau cas guéris.</ion-item>
+          <ion-item class="stat">{{ list.Global.TotalRecovered }} : nombre total des cas guéris.</ion-item>
+        </ion-list>
+        </h1>
+      </ion-card>
+
+      <ion-card>
+        <h1 style="margin: 0 10px 0 10px" *ngIf="selectedCountry">
+        <ion-list>
+          {{ selectedCountry.Country }}
+          <ion-item>{{ selectedCountry.NewConfirmed }} : nombre de nouveaux cas.</ion-item>
+            <ion-item>{{ selectedCountry.TotalConfirmed }} : nombre de cas total.</ion-item>
+            <ion-item>{{ selectedCountry.NewDeaths }} : nombre de nouveaux décès.</ion-item>
+            <ion-item>{{ selectedCountry.NewRecovered }} : nombre de nouveau cas guéris.</ion-item>
+            <ion-item>{{ selectedCountry.TotalRecovered }} : nombre total des cas guéris.</ion-item>
+        </ion-list>
+        </h1>
+      </ion-card>
+    </div>
+
+  </div>
+
+</ion-content>
